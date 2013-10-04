@@ -1,0 +1,7 @@
+.prof-queries {
+    padding: 3px;
+    border: 1px dashed grey;
+}
+.prof-query-time {
+    float: right;
+}
