@@ -19,6 +19,6 @@ try {
 $t = new Template();
 $t->set(array(
     'string' => "Hello, World!",
-    'profiler' => $profiler
+    //'profiler' => $profiler
 ));
 $t->render('index/index');

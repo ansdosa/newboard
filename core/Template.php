@@ -19,6 +19,8 @@ class Template {
         if (file_exists($path)) {
             extract($this->store);
 
+            $profiler = Profiler::getInstanse();
+
             ob_start();
 
             include_once $path;
