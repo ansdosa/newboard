@@ -1,17 +1,24 @@
 <?php
-define('H', __DIR__ . '/');
+define('ROOT', __DIR__ . '/');
 
-include_once H . 'core/init.php';
+include_once ROOT . 'core/init.php';
+
+$profiler = Profiler::getInstanse();
 
 $r = new Route();
 echo $r->route();
 
 try {
-    $db = new _PDO('mysql:host=localhost;dbname=test', 'root', '');
+    $db = new DB('mysql:host=localhost;dbname=test', 'root', '');
     $db->query("SELECT 1+1");
 } catch (PDOException $e) {
     echo $e->getTraceAsString();
 }
 
-Template::set('string', 'Hello, World!');
-Template::render('index/index');
+
+$t = new Template();
+$t->set(array(
+    'string' => "Hello, World!",
+    'profiler' => $profiler
+));
+$t->render('index/index');

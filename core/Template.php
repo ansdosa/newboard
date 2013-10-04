@@ -2,22 +2,22 @@
 
 
 class Template {
-    private static $_store = array();
+    private $store = array();
 
-    public static function set($key, $value) {
+    public function set($key, $value = 0) {
         if (is_array($key)) {
             foreach($key as $key1=>$value1) {
-                self::$_store[$key1] = $value1;
+                $this->store[$key1] = $value1;
             }
         } else {
-            self::$_store[$key] = $value;
+            $this->store[$key] = $value;
         }
     }
 
-    public static function render($file) {
-        $path = H.'app/views/'.$file.'.php';
+    public function render($file) {
+        $path = ROOT.'app/views/'.$file.'.php';
         if (file_exists($path)) {
-            extract(self::$_store);
+            extract($this->store);
 
             ob_start();
 
@@ -25,7 +25,7 @@ class Template {
 
             $_tmp = ob_get_clean();
 
-            require_once H.'app/views/index.php';
+            require_once ROOT.'app/views/index.php';
         } else {
             throw new Exception('Template '. $path .' not found');
         }

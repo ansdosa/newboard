@@ -1,4 +1,6 @@
 <?php
+// TODO: Выпилить
+
 function countDate($time) {
     $h = $time / 3600;
     $h = ceil($h) > $h ? ceil($h) - 1 : ceil($h);
